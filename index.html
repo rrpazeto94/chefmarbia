@@ -4,21 +4,181 @@
     html5up.net | @ajlkn
     Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="pt-BR">
     <head>
-        <style>           
-            /* Força todas as fotos da galeria a terem o mesmo tamanho e proporção */
-            .gallery.medium article img {
-                width: 100% !important;
-                height: 400px !important;
-                object-fit: cover !important;
-            }
-        </style>
         <title>Chef Marbia | Personal Chef & Eventos</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="Chef Marbia: personal chef e gastronomia para eventos. Menus exclusivos para o seu dia a dia, jantares, mini weddings e confraternizações. Peça seu orçamento pelo WhatsApp." />
+        <meta name="theme-color" content="#ffffff" />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="images/favicon.png" />
+        <link rel="apple-touch-icon" href="images/favicon.png" />
+
+        <!-- Pré-visualização ao compartilhar (WhatsApp, Instagram, Facebook) -->
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content="Chef Marbia" />
+        <meta property="og:title" content="Chef Marbia | Personal Chef & Eventos" />
+        <meta property="og:description" content="Experiências gastronômicas exclusivas: personal chef e eventos com menus sob medida. Peça seu orçamento." />
+        <meta property="og:url" content="https://www.chefmarbia.com.br/" />
+        <meta property="og:image" content="https://www.chefmarbia.com.br/images/chef.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            /* ===== CARROSSEL AUTOMÁTICO ===== */
+            .carousel {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+                margin: 10px 0;
+            }
+            .carousel-track {
+                display: flex;
+                transition: transform 0.6s ease-in-out;
+                will-change: transform;
+            }
+            .carousel-track.no-transition {
+                transition: none;
+            }
+            .carousel-slide {
+                flex: 0 0 calc(100% / var(--per-view, 3));
+                padding: 0 6px;
+                box-sizing: border-box;
+            }
+            .carousel-slide img {
+                display: block;
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+                border-radius: 6px;
+                -webkit-user-drag: none;
+                user-select: none;
+            }
+
+            /* ===== SETAS DO CARROSSEL ===== */
+            .carousel-arrow {
+                position: absolute !important;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 0 !important;
+                padding: 0 !important;
+                border: 0 !important;
+                border-radius: 50% !important;
+                background: rgba(255, 255, 255, 0.85) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 5;
+                line-height: 1 !important;
+                transition: background 0.2s ease, transform 0.2s ease;
+            }
+            .carousel-arrow:hover {
+                background: #fff !important;
+                transform: translateY(-50%) scale(1.08);
+            }
+            .carousel-arrow svg {
+                width: 22px;
+                height: 22px;
+                stroke: #222;
+                fill: none;
+                stroke-width: 2.5;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                pointer-events: none;
+            }
+            .carousel-arrow.prev { left: 14px; }
+            .carousel-arrow.next { right: 14px; }
+
+            /* Celular: 1 foto por vez */
+            @media screen and (max-width: 736px) {
+                .carousel { margin: 24px 0; }
+                .carousel-slide img { height: 340px; }
+                .carousel-arrow { width: 38px !important; height: 38px !important; }
+                .carousel-arrow svg { width: 18px; height: 18px; }
+                .carousel-arrow.prev { left: 8px; }
+                .carousel-arrow.next { right: 8px; }
+            }
+
+            /* ===== BOTÃO FLUTUANTE DO WHATSAPP ===== */
+            .whatsapp-float {
+                position: fixed;
+                right: 18px;
+                bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: #25D366;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+                z-index: 10000;
+                border: 0;
+                text-decoration: none;
+                animation: wpp-pulse 2.2s infinite;
+                transition: transform 0.2s ease;
+            }
+            .whatsapp-float:hover { transform: scale(1.08); }
+            .whatsapp-float svg { width: 34px; height: 34px; fill: #fff; }
+            @keyframes wpp-pulse {
+                0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55), 0 4px 14px rgba(0,0,0,0.35); }
+                70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0), 0 4px 14px rgba(0,0,0,0.35); }
+                100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 4px 14px rgba(0,0,0,0.35); }
+            }
+            @media screen and (max-width: 736px) {
+                .whatsapp-float { width: 56px; height: 56px; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+            }
+
+            /* ===== COMO FUNCIONA ===== */
+            .steps {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 32px;
+                margin: 40px auto 0;
+                max-width: 1100px;
+            }
+            .step {
+                text-align: center;
+                padding: 0 8px;
+            }
+            .step .step-number {
+                display: inline-block;
+                font-size: 0.8em;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                opacity: 0.6;
+                margin-bottom: 6px;
+            }
+            .step h3 {
+                margin-bottom: 8px;
+            }
+            .step p {
+                margin: 0;
+                text-align: justify;
+                text-justify: inter-word;
+                hyphens: auto;
+                -webkit-hyphens: auto;
+            }
+            .steps-cta {
+                margin-top: 48px;
+            }
+
+            @media screen and (max-width: 980px) {
+                .steps { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media screen and (max-width: 736px) {
+                .steps { grid-template-columns: 1fr; gap: 28px; }
+                .steps-cta { margin-top: 32px; }
+            }
+        </style>
     </head>
     <body class="is-preload">
 
@@ -36,7 +196,6 @@
 					</ul>
 				</div>
 				<div class="image">
-					<!-- Recomendo usar a foto_principal.jpg aqui, mas você pode testar com a apresentacao.jpg -->
 					<img src="images/chef.jpg" alt="Chef Marbia - Alta Gastronomia" />
 				</div>
 			</section>
@@ -47,74 +206,30 @@
                             <h2>Personal Chef</h2>
                             <p>Cardápios personalizados criados exclusivamente para o seu paladar. Leve a alta gastronomia para o conforto da sua casa no dia a dia, com ingredientes selecionados e muito carinho em cada preparo. Ideal para quem busca saúde, sabor e praticidade.</p>
                             <ul class="actions stacked">
-                                <!-- Botão com link para o WhatsApp -->
-                                <li><a href="https://wa.me/5527997212812?text=Olá Chef Marbia! Gostaria de conversar sobre um orçamento para Personal Chef." class="button" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a></li>
+                                <li><a href="https://wa.me/5527997212812?text=Ol%C3%A1%20Chef%20Marbia!%20Gostaria%20de%20conversar%20sobre%20um%20or%C3%A7amento%20para%20Personal%20Chef." class="button" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a></li>
                             </ul>
                         </div>
-                        <div class="image">                            
+                        <div class="image">
                             <img src="images/escada.jpg" alt="Serviço de Personal Chef" />
                         </div>
                     </section>
-                    <!-- Secao: Galeria / Portfólio -->
-    <section class="wrapper style1 align-center">
-        <div class="gallery style2 medium lightbox onscroll-fade-in">
-            <!-- Foto 1 -->
-            <article>
-                    <img src="images/personal1.jpeg" alt="Personal Chef 1" loading="lazy" />
 
-            </article>
-            
-            <!-- Foto 2 -->
-            <article>
-                    <img src="images/personal2.jpeg" alt="Personal Chef 2" loading="lazy" />
-
-            </article>
-
-            <!-- Foto 3 -->
-            <article>
-                    <img src="images/personal3.jpeg" alt="Personal Chef 3" loading="lazy" />
-
-            </article>
-            
-            <!-- Foto 4 -->
-            <article>
-                    <img src="images/personal4.jpeg" alt="Personal Chef 4" loading="lazy" />
-
-            </article>
-
-            <!-- Foto 5 -->
-            <article>
-                    <img src="images/personal5.jpeg" alt="Personal Chef 5" loading="lazy" />
-
-            </article>
-
-            <!-- Foto 6 -->
-            <article>
-                    <img src="images/personal6.jpeg" alt="Personal Chef 6" loading="lazy" />
-
-            </article>
-
-
-            <!-- Foto 8 -->
-            <article>
-                    <img src="images/personal8.jpeg" alt="Personal Chef 8" loading="lazy" />
-
-            </article>
-
-            <!-- Foto 9 -->
-            <article>
-                    <img src="images/personal9.jpeg" alt="Personal Chef 9" loading="lazy" />
-
-            </article>
-
-            <!-- Foto 10 -->
-            <article>
-                    <img src="images/personal10.jpeg" alt="Personal Chef 10" loading="lazy" />
-
-            </article>
-        </div>
-    </section>
-
+                <!-- Galeria Personal Chef (carrossel automático) -->
+                    <section class="wrapper style1 align-center">
+                        <div class="carousel" data-interval="2000">
+                            <div class="carousel-track">
+                                <div class="carousel-slide"><img src="images/personal1.jpeg" alt="Personal Chef 1" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/personal2.jpeg" alt="Personal Chef 2" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/personal3.jpeg" alt="Personal Chef 3" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/personal4.jpeg" alt="Personal Chef 4" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/personal5.jpeg" alt="Personal Chef 5" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/personal6.jpeg" alt="Personal Chef 6" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/personal8.jpeg" alt="Personal Chef 8" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/personal9.jpeg" alt="Personal Chef 9" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/personal10.jpeg" alt="Personal Chef 10" loading="lazy" /></div>
+                            </div>
+                        </div>
+                    </section>
 
                 <!-- Three: Serviço 2 -->
                     <section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
@@ -122,69 +237,41 @@
                             <h2>Eventos e Celebrações</h2>
                             <p>De jantares intimistas a mini weddings e confraternizações. Transformamos o seu evento em uma experiência inesquecível, cuidando de todos os detalhes gastronômicos para você focar no que realmente importa: aproveitar o momento com seus convidados.</p>
                             <ul class="actions stacked">
-                                <!-- Botão com link para o WhatsApp -->
-                                <li><a href="https://wa.me/5527997212812?text=Olá Chef Marbia! Gostaria de planejar um evento com você." class="button" target="_blank" rel="noopener noreferrer">Planejar meu Evento</a></li>
+                                <li><a href="https://wa.me/5527997212812?text=Ol%C3%A1%20Chef%20Marbia!%20Gostaria%20de%20planejar%20um%20evento%20com%20voc%C3%AA." class="button" target="_blank" rel="noopener noreferrer">Planejar meu Evento</a></li>
                             </ul>
                         </div>
                         <div class="image">
-                            <!-- Atualizado para escada.jpg -->
                             <img src="images/chef3.jpg" alt="Gastronomia para Eventos" />
                         </div>
                     </section>
-                    <!-- Secao: Galeria / Portfólio -->
-                    <section class="wrapper style1 align-center">
-                        <div class="gallery style2 medium lightbox onscroll-fade-in">
-                            <!-- Foto 1: O Prato -->
-                            <article>
-                                    <img src="images/evento1.jpeg" loading="lazy" />
-                            </article>
-                            
-                            <!-- Foto 2: Bancada -->
-                            <article>
-                                    <img src="images/evento7.jpeg"  loading="lazy" />
-                            </article>
 
-                            <article>
-                                    <img src="images/evento4.jpeg"  loading="lazy" />
-                            </article>
-                            
-                            <!-- Foto 4: Finalização com Pinça (chef3) -->
-                            <article>
-                                    <img src="images/evento6.jpeg" loading="lazy" />
-                            </article>
-                                                        <article>
-                                    <img src="images/eventp5.jpeg"  loading="lazy" />
-                            </article>
-                                                      </article>
-                                                        <article>
-                                    <img src="images/evento12.jpeg"  loading="lazy" />
-                            </article>
-                                                        <article>
-                                    <img src="images/evento3.jpeg"  loading="lazy" />
-                            </article>
-                                                        <article>
-                                    <img src="images/evento8.jpeg" loading="lazy" />
-                            </article>
-                                                        <article>
-                                    <img src="images/evento2.jpeg" loading="lazy" />
-                            </article>
-                                                        <article>
-                                    <img src="images/evento9.jpeg" alt="Alta Gastronomia" loading="lazy" />
-                            </article>
-                                                        <article>
-                                    <img src="images/evento10.jpeg" alt="Alta Gastronomia" loading="lazy" />
-                            </article>
+                <!-- Galeria Eventos (carrossel automático) -->
+                    <section class="wrapper style1 align-center">
+                        <div class="carousel" data-interval="2000">
+                            <div class="carousel-track">
+                                <div class="carousel-slide"><img src="images/evento1.jpeg" alt="Evento 1" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento7.jpeg" alt="Evento 7" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento4.jpeg" alt="Evento 4" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento6.jpeg" alt="Evento 6" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/eventp5.jpeg" alt="Evento 5" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento12.jpeg" alt="Evento 12" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento3.jpeg" alt="Evento 3" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento8.jpeg" alt="Evento 8" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento2.jpeg" alt="Evento 2" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento9.jpeg" alt="Alta Gastronomia" loading="lazy" /></div>
+                                <div class="carousel-slide"><img src="images/evento10.jpeg" alt="Alta Gastronomia" loading="lazy" /></div>
+                            </div>
                         </div>
                     </section>
 
-                
+                <!-- Diferenciais -->
                     <section class="wrapper style1 align-center">
                         <div class="inner">
                             <h2>Os Diferenciais</h2>
                             <p>O que faz ser a escolha certa para você:</p>
                             <div class="items style1 medium onscroll-fade-in">
                                 <section>
-                                    <span class="icon solid style2 major fa-utensils"></span> 
+                                    <span class="icon solid style2 major fa-utensils"></span>
                                     <h3>Menus Exclusivos</h3>
                                     <p>Cardápios montados sob medida, respeitando seus gostos, preferências e restrições alimentares. Cada cliente é único, e o seu menu também.</p>
                                 </section>
@@ -202,15 +289,51 @@
                         </div>
                     </section>
 
-                <!-- Seven: Contato (Formulário substituído por botão WhatsApp) -->
+                <!-- Como Funciona -->
+                    <section class="wrapper style1 align-center" id="como-funciona">
+                        <div class="inner">
+                            <h2>Como funciona</h2>
+
+                            <div class="steps onscroll-fade-in">
+                                <div class="step">
+                                    <span class="icon solid style2 major fa-comments"></span>
+                                    <span class="step-number">Passo 1</span>
+                                    <h3>Vamos conversar</h3>
+                                    <p>Me chame no WhatsApp e conte o que você imagina: um jantar especial, uma celebração ou refeições para o seu dia a dia.</p>
+                                </div>
+                                <div class="step">
+                                    <span class="icon solid style2 major fa-clipboard-list"></span>
+                                    <span class="step-number">Passo 2</span>
+                                    <h3>Criamos o seu menu</h3>
+                                    <p>Eu entendo seus gostos, restrições e a ocasião, e monto um cardápio pensado para você.</p>
+                                </div>
+                                <div class="step">
+                                    <span class="icon solid style2 major fa-file-invoice-dollar"></span>
+                                    <span class="step-number">Passo 3</span>
+                                    <h3>Você recebe a proposta</h3>
+                                    <p>Tudo explicado com clareza, com o menu e os valores.</p>
+                                </div>
+                                <div class="step">
+                                    <span class="icon solid style2 major fa-utensils"></span>
+                                    <span class="step-number">Passo 4</span>
+                                    <h3>É só aproveitar</h3>
+                                    <p>A cozinha fica comigo. Você curte a companhia de quem importa e o sabor de cada prato.</p>
+                                </div>
+                            </div>
+
+                            <ul class="actions special steps-cta">
+                                <li><a href="https://wa.me/5527997212812?text=Ol%C3%A1%20Chef%20Marbia!%20Vi%20o%20site%20e%20gostaria%20de%20um%20or%C3%A7amento.%0AData%3A%20%0ALocal%3A%20%0AN%C3%BAmero%20de%20convidados%3A%20" class="button primary" target="_blank" rel="noopener noreferrer">Quero meu orçamento</a></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                <!-- Seven: Contato -->
                     <section class="wrapper style1 align-center" id="contato">
                         <div class="inner medium">
                             <h2>Vamos planejar o seu próximo evento?</h2>
                             <p>Entre em contato diretamente pelo WhatsApp. Me conte a data, o estilo do evento e número de convidados, e montaremos uma proposta exclusiva.</p>
-                            
-                            <!-- Botão principal do WhatsApp na seção de contato -->
                             <ul class="actions special">
-                                <li><a href="https://wa.me/5527997212812?text=Olá Chef Marbia! Gostaria de conversar sobre um orçamento." class="button primary large icon brands fa-whatsapp" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></li>
+                                <li><a href="https://wa.me/5527997212812?text=Ol%C3%A1%20Chef%20Marbia!%20Gostaria%20de%20conversar%20sobre%20um%20or%C3%A7amento." class="button primary large icon brands fa-whatsapp" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a></li>
                             </ul>
                         </div>
                     </section>
@@ -219,11 +342,8 @@
                     <footer class="wrapper style1 align-center">
                         <div class="inner">
                             <ul class="icons">
-                                <!-- Instagram -->
-                                <li><a href="https://instagram.com/marbia_nascimento" class="icon brands style2 fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
-                                <!-- WhatsApp -->
-                                <li><a href="https://wa.me/5527997212812?text=Olá Chef Marbia! Vi o site e gostaria de mais informações." class="icon brands style2 fa-whatsapp" target="_blank" rel="noopener noreferrer"><span class="label">WhatsApp</span></a></li>
-                                <!-- Email -->
+                                <li><a href="https://instagram.com/marbia_nascimento" class="icon brands style2 fa-instagram" target="_blank" rel="noopener noreferrer"><span class="label">Instagram</span></a></li>
+                                <li><a href="https://wa.me/5527997212812?text=Ol%C3%A1%20Chef%20Marbia!%20Vi%20o%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="icon brands style2 fa-whatsapp" target="_blank" rel="noopener noreferrer"><span class="label">WhatsApp</span></a></li>
                                 <li><a href="mailto:marbianascimento7@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
                             </ul>
                             <p>&copy; Chef Marbia. Todos os direitos reservados. Desenvolvido por <strong>Seven Tecnologia</strong>.</p>
@@ -232,7 +352,16 @@
 
             </div>
 
-        <!-- Scripts -->
+        <!-- Botão flutuante do WhatsApp -->
+        <a class="whatsapp-float"
+           href="https://wa.me/5527997212812?text=Ol%C3%A1%20Chef%20Marbia!%20Vi%20o%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+           target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M16.003 3C8.83 3 3 8.83 3 16c0 2.29.6 4.52 1.74 6.49L3 29l6.67-1.7A12.94 12.94 0 0 0 16.003 29C23.17 29 29 23.17 29 16S23.17 3 16.003 3zm0 23.7c-1.97 0-3.9-.53-5.58-1.53l-.4-.24-3.96 1.01 1.06-3.86-.26-.4A10.66 10.66 0 0 1 5.3 16c0-5.9 4.8-10.7 10.7-10.7S26.7 10.1 26.7 16s-4.8 10.7-10.7 10.7zm5.87-8c-.32-.16-1.9-.94-2.2-1.04-.3-.11-.5-.16-.72.16-.21.32-.83 1.04-1.02 1.26-.19.21-.38.24-.7.08-.32-.16-1.36-.5-2.6-1.6-.96-.86-1.6-1.9-1.8-2.22-.18-.32-.02-.5.14-.66.14-.14.32-.38.48-.56.16-.19.21-.32.32-.54.1-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.54-.72-.55h-.62c-.21 0-.56.08-.85.4-.3.32-1.12 1.1-1.12 2.68s1.15 3.1 1.31 3.32c.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.68.77.24 1.46.2 2.01.12.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.4.19-1.53-.08-.13-.3-.21-.62-.37z"/>
+            </svg>
+        </a>
+
+        <!-- Scripts do template -->
             <script src="assets/js/jquery.min.js"></script>
             <script src="assets/js/jquery.scrollex.min.js"></script>
             <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -240,6 +369,150 @@
             <script src="assets/js/breakpoints.min.js"></script>
             <script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
+
+        <!-- Script do carrossel automático -->
+            <script>
+            (function () {
+                function perView() {
+                    var w = window.innerWidth;
+                    if (w <= 736) return 1;   // celular
+                    if (w <= 980) return 2;   // tablet
+                    return 3;                 // desktop
+                }
+
+                var ICON_PREV = '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+                var ICON_NEXT = '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>';
+
+                function makeArrow(cls, label, icon) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'carousel-arrow ' + cls;
+                    b.setAttribute('aria-label', label);
+                    b.innerHTML = icon;
+                    return b;
+                }
+
+                function initCarousel(root) {
+                    var track = root.querySelector('.carousel-track');
+                    var originals = Array.prototype.slice.call(track.children);
+                    var count = originals.length;
+                    var interval = parseInt(root.getAttribute('data-interval'), 10) || 2000;
+                    var pv, index, timer, busy = false, busyTimer;
+
+                    function setup() {
+                        Array.prototype.slice.call(track.querySelectorAll('.is-clone')).forEach(function (c) {
+                            track.removeChild(c);
+                        });
+                        pv = perView();
+                        root.style.setProperty('--per-view', pv);
+                        for (var i = 0; i < pv; i++) {
+                            var clone = originals[i % count].cloneNode(true);
+                            clone.classList.add('is-clone');
+                            clone.setAttribute('aria-hidden', 'true');
+                            track.appendChild(clone);
+                        }
+                        busy = false;
+                        jump(0);
+                    }
+
+                    function move() {
+                        track.style.transform = 'translateX(' + (-index * 100 / pv) + '%)';
+                    }
+
+                    function jump(i) {
+                        track.classList.add('no-transition');
+                        index = i;
+                        move();
+                        void track.offsetWidth; // força reflow
+                        track.classList.remove('no-transition');
+                    }
+
+                    function lock() {
+                        busy = true;
+                        clearTimeout(busyTimer);
+                        busyTimer = setTimeout(function () { busy = false; }, 800); // segurança
+                    }
+
+                    function next() {
+                        if (busy) return;
+                        lock();
+                        index++;
+                        move();
+                    }
+
+                    function prev() {
+                        if (busy) return;
+                        lock();
+                        if (index === 0) jump(count);
+                        index--;
+                        move();
+                    }
+
+                    track.addEventListener('transitionend', function (e) {
+                        if (e.target !== track) return;
+                        busy = false;
+                        if (index >= count) jump(index - count);
+                    });
+
+                    function start() {
+                        stop();
+                        timer = setInterval(next, interval);
+                    }
+                    function stop() { clearInterval(timer); }
+
+                    // Setas
+                    var btnPrev = makeArrow('prev', 'Foto anterior', ICON_PREV);
+                    var btnNext = makeArrow('next', 'Próxima foto', ICON_NEXT);
+                    btnPrev.addEventListener('click', function () { prev(); start(); });
+                    btnNext.addEventListener('click', function () { next(); start(); });
+                    root.appendChild(btnPrev);
+                    root.appendChild(btnNext);
+
+                    // Pausa no desktop ao passar o mouse
+                    root.addEventListener('mouseenter', stop);
+                    root.addEventListener('mouseleave', start);
+
+                    // Swipe no celular
+                    var startX = null;
+                    root.addEventListener('touchstart', function (e) {
+                        startX = e.touches[0].clientX;
+                        stop();
+                    }, { passive: true });
+                    root.addEventListener('touchend', function (e) {
+                        if (startX !== null) {
+                            var dx = e.changedTouches[0].clientX - startX;
+                            if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+                        }
+                        startX = null;
+                        start();
+                    }, { passive: true });
+
+                    // Só roda quando o carrossel está visível na tela
+                    if ('IntersectionObserver' in window) {
+                        new IntersectionObserver(function (entries) {
+                            entries[0].isIntersecting ? start() : stop();
+                        }, { threshold: 0.2 }).observe(root);
+                    } else {
+                        start();
+                    }
+
+                    // Recalcula ao girar a tela / redimensionar
+                    var rt;
+                    window.addEventListener('resize', function () {
+                        clearTimeout(rt);
+                        rt = setTimeout(setup, 200);
+                    });
+
+                    setup();
+                }
+
+                function boot() {
+                    Array.prototype.slice.call(document.querySelectorAll('.carousel')).forEach(initCarousel);
+                }
+                if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+                else boot();
+            })();
+            </script>
 
     </body>
 </html>
